@@ -1,0 +1,136 @@
+{
+  "userId": 3,
+  "recommendations": [
+    {
+      "product_id": 155,
+      "category": "Perfumes",
+      "price": 178,
+      "product_name": "Fragrance Mist",
+      "subcategory": "Men",
+      "price_tier": "Standard",
+      "seasonality": "Year-round",
+      "recommendation_score": 51,
+      "avg_rating": 4.6,
+      "rating_count": 5
+    },
+    {
+      "product_id": 204,
+      "category": "Electronics",
+      "price": 443,
+      "product_name": "Charger",
+      "subcategory": "Cables",
+      "price_tier": "Premium",
+      "seasonality": "Year-round",
+      "recommendation_score": 49.97,
+      "avg_rating": 3.73,
+      "rating_count": 11
+    },
+    {
+      "product_id": 298,
+      "category": "Toys",
+      "price": 356,
+      "product_name": "Puzzle",
+      "subcategory": "Educational",
+      "price_tier": "Premium",
+      "seasonality": "Seasonal",
+      "recommendation_score": 49.77,
+      "avg_rating": 3.5,
+      "rating_count": 12
+    },
+    {
+      "product_id": 198,
+      "category": "Electronics",
+      "price": 922,
+      "product_name": "Power Bank",
+      "subcategory": "Cables",
+      "price_tier": "Luxury",
+      "seasonality": "Year-round",
+      "recommendation_score": 49.25,
+      "avg_rating": 4,
+      "rating_count": 8
+    },
+    {
+      "product_id": 402,
+      "category": "Books",
+      "price": 187,
+      "product_name": "Biography",
+      "subcategory": "Children",
+      "price_tier": "Standard",
+      "seasonality": "Seasonal",
+      "recommendation_score": 49.06,
+      "avg_rating": 3.33,
+      "rating_count": 6
+    },
+    {
+      "product_id": 339,
+      "category": "Home Appliances",
+      "price": 254,
+      "product_name": "Coffee Maker",
+      "subcategory": "Laundry",
+      "price_tier": "Premium",
+      "seasonality": "Year-round",
+      "recommendation_score": 48.94,
+      "avg_rating": 3.38,
+      "rating_count": 8
+    },
+    {
+      "product_id": 293,
+      "category": "Home Appliances",
+      "price": 196,
+      "product_name": "Iron",
+      "subcategory": "Laundry",
+      "price_tier": "Standard",
+      "seasonality": "Year-round",
+      "recommendation_score": 48.94,
+      "avg_rating": 3.38,
+      "rating_count": 8
+    },
+    {
+      "product_id": 26,
+      "category": "Toys",
+      "price": 139,
+      "product_name": "Stuffed Animal",
+      "subcategory": "Educational",
+      "price_tier": "Standard",
+      "seasonality": "Seasonal",
+      "recommendation_score": 48.9,
+      "avg_rating": 3,
+      "rating_count": 16
+    },
+    {
+      "product_id": 322,
+      "category": "Clothes",
+      "price": 296,
+      "product_name": "T-Shirt",
+      "subcategory": "Accessories",
+      "price_tier": "Premium",
+      "seasonality": "Year-round",
+      "recommendation_score": 48.47,
+      "avg_rating": 3.15,
+      "rating_count": 13
+    },
+    {
+      "product_id": 385,
+      "category": "Sports",
+      "price": 829,
+      "product_name": "Soccer Ball",
+      "subcategory": "Team Sports",
+      "price_tier": "Luxury",
+      "seasonality": "Seasonal",
+      "recommendation_score": 47.45,
+      "avg_rating": 3.43,
+      "rating_count": 7
+    }
+  ],
+  "algorithm_metrics": {
+    "generations": 30,
+    "best_fitness": 18.59,
+    "fitness_improvement": 0.78
+  },
+  "user_profile": {
+    "age": 40,
+    "country": "Morocco",
+    "segment": "Working Professional",
+    "purchased_count": 2
+  }
+}
