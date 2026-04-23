@@ -153,6 +153,11 @@
 
 .cards-grid {
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  align-items: stretch;
+}
+
+.cards-grid > div {
+  height: 100%;
 }
 
 .info-grid,
@@ -168,12 +173,41 @@
 
 .product-card {
   position: relative;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
   padding: 22px;
+  height: 100%;
   min-height: 320px;
   background:
     radial-gradient(circle at top right, rgba(224, 171, 133, 0.22), transparent 34%),
     linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(249, 245, 240, 0.92));
+}
+
+.view-product-button,
+.spotlight-close-button {
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+}
+
+.view-product-button {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  padding: 7px 12px;
+  font-size: 0.8rem;
+  color: #9b4f25;
+  background: rgba(176, 93, 47, 0.12);
+  transition: transform 0.18s ease, background-color 0.18s ease;
+}
+
+.view-product-button:hover {
+  transform: translateY(-1px);
+  background: rgba(176, 93, 47, 0.2);
 }
 
 .card-top,
@@ -209,6 +243,11 @@
   font-size: 0.88rem;
 }
 
+.card-meta span {
+  font-size: 0.76rem;
+  line-height: 1.2;
+}
+
 .product-mark {
   position: absolute;
   top: 54px;
@@ -221,6 +260,9 @@
 .card-content {
   position: relative;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .card-content h3 {
@@ -261,11 +303,23 @@
   margin-bottom: 18px;
 }
 
+.card-content .primary-button {
+  margin-top: auto;
+}
+
 .card-meta div {
+  min-width: 0;
   padding: 12px;
   border-radius: 18px;
   background: rgba(255, 255, 255, 0.78);
   border: 1px solid rgba(93, 63, 43, 0.08);
+}
+
+.card-meta strong {
+  display: block;
+  font-size: 0.98rem;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
 }
 
 .primary-button,
@@ -350,6 +404,40 @@
 .feedback-toast.show {
   opacity: 1;
   transform: translateY(0);
+}
+
+.spotlight-backdrop {
+  position: fixed;
+  inset: 0;
+  border: 0;
+  background: rgba(25, 20, 16, 0.26);
+  backdrop-filter: blur(7px);
+  z-index: 28;
+}
+
+.spotlight-layer {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(430px, calc(100vw - 28px));
+  z-index: 32;
+}
+
+.spotlight-card {
+  min-height: auto;
+  max-height: calc(100vh - 48px);
+  overflow: auto;
+  box-shadow: 0 34px 72px rgba(32, 24, 18, 0.36);
+}
+
+.spotlight-close-button {
+  position: absolute;
+  top: -44px;
+  right: 0;
+  padding: 8px 14px;
+  color: #fff;
+  background: rgba(36, 25, 18, 0.85);
 }
 
 @keyframes cartPulse {

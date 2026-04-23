@@ -31,6 +31,7 @@ function App() {
   const [activePage, setActivePage] = useState("home");
   const [feedbackMessage, setFeedbackMessage] = useState("");
   const [isCartHighlighted, setIsCartHighlighted] = useState(false);
+  const [spotlightProductId, setSpotlightProductId] = useState(null);
   const [cartItems, setCartItems] = useState(() => {
     const savedCart = localStorage.getItem("cart-items");
     return savedCart ? JSON.parse(savedCart) : [];
@@ -63,6 +64,20 @@ function App() {
 
     return () => window.clearTimeout(timer);
   }, [isCartHighlighted]);
+
+  useEffect(() => {
+    if (activePage !== "home") {
+      setSpotlightProductId(null);
+    }
+  }, [activePage]);
+
+  function showSpotlight(productId) {
+    setSpotlightProductId(productId);
+  }
+
+  function closeSpotlight() {
+    setSpotlightProductId(null);
+  }
 
   function addToCart(product) {
     setCartItems((currentItems) => {
@@ -101,6 +116,72 @@ function App() {
     (sum, item) => sum + item.price * item.quantity,
     0,
   );
+  const spotlightProduct = recommendations.find(
+    (product) => product.product_id === spotlightProductId,
+  );
+
+  function renderProductCard(product, extraClassName = "", withViewButton = false) {
+    return (
+      <article
+        className={`product-card ${extraClassName}`.trim()}
+        key={product.product_id}
+      >
+        {withViewButton && (
+          <button
+            className="view-product-button"
+            onClick={() => showSpotlight(product.product_id)}
+            type="button"
+          >
+            View
+          </button>
+        )}
+
+        <div className="card-top">
+          <span className="category-badge">
+            {categoryIcons[product.category] ?? "--"} {product.category}
+          </span>
+          <span className="product-id">#{product.product_id}</span>
+        </div>
+
+        <div className="product-mark">{categoryIcons[product.category] ?? "--"}</div>
+
+        <div className="card-content">
+          <h3>{product.product_name}</h3>
+          <p className="subcategory">{product.subcategory}</p>
+
+          <div className="price-row">
+            <strong>{formatPrice(product.price)}</strong>
+            <span>{product.price_tier}</span>
+          </div>
+
+          <div className="card-meta">
+            <div>
+              <span>Score</span>
+              <strong>{product.recommendation_score.toFixed(2)}</strong>
+            </div>
+            <div>
+              <span>Rating</span>
+              <strong>
+                {formatRating(product.avg_rating)} ({product.rating_count})
+              </strong>
+            </div>
+            <div>
+              <span>Season</span>
+              <strong>{product.seasonality}</strong>
+            </div>
+          </div>
+
+          <button
+            className="primary-button"
+            onClick={() => addToCart(product)}
+            type="button"
+          >
+            Add to Cart
+          </button>
+        </div>
+      </article>
+    );
+  }
 
   return (
     <div className="page-shell">
@@ -156,55 +237,33 @@ function App() {
 
           <div className="cards-grid">
             {recommendations.map((product) => (
-              <article className="product-card" key={product.product_id}>
-                <div className="card-top">
-                  <span className="category-badge">
-                    {categoryIcons[product.category] ?? "--"} {product.category}
-                  </span>
-                  <span className="product-id">#{product.product_id}</span>
-                </div>
-
-                <div className="product-mark">
-                  {categoryIcons[product.category] ?? "--"}
-                </div>
-
-                <div className="card-content">
-                  <h3>{product.product_name}</h3>
-                  <p className="subcategory">{product.subcategory}</p>
-
-                  <div className="price-row">
-                    <strong>{formatPrice(product.price)}</strong>
-                    <span>{product.price_tier}</span>
-                  </div>
-
-                  <div className="card-meta">
-                    <div>
-                      <span>Score</span>
-                      <strong>{product.recommendation_score.toFixed(2)}</strong>
-                    </div>
-                    <div>
-                      <span>Rating</span>
-                      <strong>
-                        {formatRating(product.avg_rating)} ({product.rating_count})
-                      </strong>
-                    </div>
-                    <div>
-                      <span>Season</span>
-                      <strong>{product.seasonality}</strong>
-                    </div>
-                  </div>
-
-                  <button
-                    className="primary-button"
-                    onClick={() => addToCart(product)}
-                    type="button"
-                  >
-                    Add to Cart
-                  </button>
-                </div>
-              </article>
+              <div key={product.product_id}>
+                {renderProductCard(product, "", true)}
+              </div>
             ))}
           </div>
+
+          {spotlightProduct && (
+            <>
+              <button
+                className="spotlight-backdrop"
+                aria-label="Close product view"
+                onClick={closeSpotlight}
+                type="button"
+              />
+              <div className="spotlight-layer">
+                <button
+                  className="spotlight-close-button"
+                  aria-label="Close product view"
+                  onClick={closeSpotlight}
+                  type="button"
+                >
+                  Close
+                </button>
+                {renderProductCard(spotlightProduct, "spotlight-card")}
+              </div>
+            </>
+          )}
         </section>
       )}
 
