@@ -1,8 +1,8 @@
-import sqlite3  # For database operations to fetch user and product data
-import random   # For random selection in genetic algorithm (selection, mutation, initialization)
-import math     # For mathematical operations (though not heavily used here)
+import sqlite3  
+import random   
+import math     
 import json     # For saving recommendations to JSON file
-from datetime import datetime  # For timestamping the output
+from datetime import datetime  
 
 class ProductRecommenderGA:
     """Genetic Algorithm based Product Recommender System"""
@@ -520,7 +520,7 @@ class ProductRecommenderGA:
         
         return final_recs, algorithm_metrics, user_profile
     
-    def save_recommendations_to_json(self, user_id, recommendations, algorithm_metrics, user_profile, output_file='recommendations.json'):
+    def save_recommendations_to_json(self, user_id, recommendations, algorithm_metrics, user_profile, output_file='src/recommendations.json'):
         """
         Save recommendations to a JSON file with the specified structure
         
@@ -587,7 +587,7 @@ def main():
             recommendations=recommendations,
             algorithm_metrics=algorithm_metrics,
             user_profile=user_profile,
-            output_file='recommendations.json'
+            output_file='src/recommendations.json'
         )
 
         print("===========================")
